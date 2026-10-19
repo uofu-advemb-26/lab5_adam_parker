@@ -2,7 +2,7 @@ Testing
 build
 log
 lib/
-.DS_Store
+*.DS_Store
 .cache/
 
 *.log.*
