@@ -3,13 +3,22 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
+uint OUT_PIN = 22;
+uint DELAY_MS = 100;
+uint volatile busy_count;
+
 void main_task(__unused void *params)
 {
     int toggle = 0;
     while (1) {
+        busy_count = 0;
         toggle = !toggle;
         gpio_put(OUT_PIN, toggle);
         vTaskDelay(pdMS_TO_TICKS(DELAY_MS));
+        while(busy_count < 1000000)
+        {
+            busy_count ++;
+        }
     }
 }
 
