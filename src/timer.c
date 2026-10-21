@@ -2,11 +2,21 @@
 #include <pico/stdlib.h>
 #include <pico/sync.h>
 
+uint OUT_PIN = 22;
+uint DELAY_MS = 100;
+uint volatile busy_count;
+
 int toggle = 1;
 bool timer_callback(__unused struct repeating_timer *t)
 {
+    busy_count = 0;
     toggle = !toggle;
     gpio_put(OUT_PIN, toggle);
+
+    while(busy_count < 1000000)
+    {
+        busy_count ++;
+    }
     return true;
 }
 
