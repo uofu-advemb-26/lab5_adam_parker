@@ -1,6 +1,6 @@
 # This is the main binary. List your C files here.
 add_executable(timing
-    gpio_interrupt.c
+    task_delay.c
     )
 
 pico_set_program_name(timing "test")
